@@ -45,6 +45,22 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &1734541026410006
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4971936164779736}
+  - component: {fileID: 114740229775162142}
+  m_Layer: 8
+  m_Name: equippedWeapon
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!4 &4208600997770646
 Transform:
   m_ObjectHideFlags: 1
@@ -56,6 +72,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4831923154063554}
+  - {fileID: 4971936164779736}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -71,6 +88,19 @@ Transform:
   m_Children: []
   m_Father: {fileID: 4208600997770646}
   m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &4971936164779736
+Transform:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1734541026410006}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4208600997770646}
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!50 &50638422194468848
 Rigidbody2D:
@@ -128,17 +158,33 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9a63c92ba322f644aa801e23cf449f79, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  runningSpeed: 3
+  runningSpeed: 4
   jumpHeight: 5
-  dodgeSpeed: 10
+  dodgeSpeed: 8
   dodgeInterval: 1
+  dodgeIFrames: 20
+  lastDodgeFrames: 3
   hasDodged: 0
   playerBody: {fileID: 50638422194468848}
-  playerCollider: {fileID: 61889194739670096}
   groundLayers:
     serializedVersion: 2
     m_Bits: 1024
   groundCheck: {fileID: 4831923154063554}
+  equippedWeapon: {fileID: 1734541026410006}
+--- !u!114 &114740229775162142
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1734541026410006}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 694cdf2630980fe47b852cec06dadffa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  weaponDMG: 0
+  weaponCoolDown: 0
+  weaponComboTimer: 0
 --- !u!212 &212055959644369826
 SpriteRenderer:
   m_ObjectHideFlags: 1
