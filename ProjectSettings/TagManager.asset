@@ -8,6 +8,7 @@ TagManager:
   - PlayerWeapon
   - EnemyWeapon
   - Missile
+  - Weapon
   layers:
   - Default
   - TransparentFX
@@ -23,7 +24,7 @@ TagManager:
   - Wall
   - Roof
   - Projectile
-  - 
+  - Invincible
   - 
   - 
   - 
