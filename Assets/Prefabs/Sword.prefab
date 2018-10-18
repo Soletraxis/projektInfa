@@ -23,7 +23,7 @@ GameObject:
   - component: {fileID: 61741934636650204}
   - component: {fileID: 50088233894330516}
   - component: {fileID: 114805650071742854}
-  m_Layer: 13
+  m_Layer: 14
   m_Name: Sword
   m_TagString: Weapon
   m_Icon: {fileID: 0}
@@ -154,6 +154,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1c391f70d7d15514d811e49ac1092d16, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  weaponDMG: 100
+  weaponCoolDown: 5
+  weaponComboTimer: 0.5
 --- !u!212 &212054639786997016
 SpriteRenderer:
   m_ObjectHideFlags: 1

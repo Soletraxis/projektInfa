@@ -164,6 +164,7 @@ MonoBehaviour:
   dodgeInterval: 1
   dodgeIFrames: 20
   lastDodgeFrames: 3
+  playerHealth: 100
   hasDodged: 0
   playerBody: {fileID: 50638422194468848}
   groundLayers:
@@ -172,6 +173,7 @@ MonoBehaviour:
   groundCheck: {fileID: 4831923154063554}
   equippedWeapon: {fileID: 1734541026410006}
   PlayerHitbox: {fileID: 0}
+  healthSlider: {fileID: 0}
 --- !u!114 &114740229775162142
 MonoBehaviour:
   m_ObjectHideFlags: 1

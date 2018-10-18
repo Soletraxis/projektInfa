@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour {
 
@@ -14,6 +15,9 @@ public class PlayerController : MonoBehaviour {
     public float dodgeInterval = 5.0f;
     public int dodgeIFrames = 15;
     public int lastDodgeFrames = 3;
+    public int maxPlayerHealth = 100;
+    public int currentPlayerHealth = 1;
+    //public float xd = 3;
 
     private float hAxis;
     private float jAxis;
@@ -26,6 +30,7 @@ public class PlayerController : MonoBehaviour {
     private Vector2 movementVect;
     private Vector2 dodgeVect;
     private bool hasJumped = false;
+    //private bool hasdoubleJumped = false;
     private bool hasAttacked = false;
     private bool hasInteracted = false;
 
@@ -43,11 +48,14 @@ public class PlayerController : MonoBehaviour {
 
     [SerializeField]
     private BoxCollider2D PlayerHitbox;
+
+    [SerializeField]
+    private Slider healthSlider;
     #endregion
 
     #region Start
     void Start() {
-
+        currentPlayerHealth = maxPlayerHealth;
     }
     #endregion
 
@@ -56,6 +64,7 @@ public class PlayerController : MonoBehaviour {
         walkMethod();
         jumpMethod();
         dodgeMethod();
+        OnChangeHealth();
     }
     #endregion
 
@@ -82,18 +91,28 @@ public class PlayerController : MonoBehaviour {
     private void jumpMethod()
     {
         jAxis = Input.GetAxis("Jump");
-        if (jAxis > 0.0f)
+        if (jAxis > 0.0f/* && jAxis != xd*/)
         {
+            //xd = jAxis;
             bool isGrounded = IsGrounded();
-            if (isGrounded == true && hasJumped == false)
+            if (isGrounded == true && hasJumped == false/* && hasdoubleJumped == false*/)
             {
                 playerBody.AddForce(Vector2.up * jAxis * jumpHeight, ForceMode2D.Impulse);
                 hasJumped = true;
+                //print("xd");
             }
+            /*if (hasdoubleJumped == false && hasJumped == true && isGrounded == false)
+            {
+                print("dupa");
+                playerBody.AddForce(Vector2.up * jAxis * jumpHeight, ForceMode2D.Impulse);
+                hasdoubleJumped = true;
+            }*/
         }
         else
         {
             hasJumped = false;
+            //hasdoubleJumped = false;
+            //xd = 3;
         }
 
     }
@@ -142,6 +161,7 @@ public class PlayerController : MonoBehaviour {
     }
     #endregion
 
+    #region OnTriggerStay
     private void OnTriggerStay2D(Collider2D other)
     {
         #region Picking stuff up
@@ -152,6 +172,7 @@ public class PlayerController : MonoBehaviour {
             {
                 other.transform.root.gameObject.SetActive(false);
                 other.transform.parent.SetParent(equippedWeapon.transform);
+                other.transform.parent.localPosition = Vector2.zero;
                 hasInteracted = true;
                 equippedWeapon.GetComponent<Attack>().WeaponUpgrade();
             }
@@ -178,6 +199,14 @@ public class PlayerController : MonoBehaviour {
         }
         #endregion
     }
+#endregion
 
-
+    #region Health Slider Changer
+    public void OnChangeHealth()
+    {
+        healthSlider.maxValue = maxPlayerHealth;
+        healthSlider.value = currentPlayerHealth;
+        healthSlider.GetComponentInChildren<Text>().text = currentPlayerHealth + "/" + maxPlayerHealth;
+    }
+#endregion
 }
