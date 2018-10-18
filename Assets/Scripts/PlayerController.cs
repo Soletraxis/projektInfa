@@ -40,6 +40,9 @@ public class PlayerController : MonoBehaviour {
 
     [SerializeField]
     private GameObject equippedWeapon;
+
+    [SerializeField]
+    private BoxCollider2D PlayerHitbox;
     #endregion
 
     #region Start
@@ -53,7 +56,6 @@ public class PlayerController : MonoBehaviour {
         walkMethod();
         jumpMethod();
         dodgeMethod();
-        AttackMethod();
     }
     #endregion
 
@@ -140,28 +142,9 @@ public class PlayerController : MonoBehaviour {
     }
     #endregion
 
-    #region AttackMethod
-    private void AttackMethod()
-    {
-        attackAxis = Input.GetAxis("Attack");
-        if (attackAxis == 1.0f)
-        {
-            if (hasAttacked == false)
-            {
-                equippedWeapon.GetComponent<Attack>().AttackMethod();
-                hasAttacked = true;
-            }
-        }
-        else
-        {
-            hasAttacked = false;
-        }
-    }
-    #endregion
-
-    #region Picking stuff up
     private void OnTriggerStay2D(Collider2D other)
     {
+        #region Picking stuff up
         interactAxis = Input.GetAxis("Interact");
         if (other.CompareTag("Weapon") && interactAxis == 1.0f)
         {
@@ -170,13 +153,31 @@ public class PlayerController : MonoBehaviour {
                 other.transform.root.gameObject.SetActive(false);
                 other.transform.parent.SetParent(equippedWeapon.transform);
                 hasInteracted = true;
+                equippedWeapon.GetComponent<Attack>().WeaponUpgrade();
             }
         }
         else
         {
             hasInteracted = false;
         }
+        #endregion
+
+        #region Attack Method
+        attackAxis = Input.GetAxis("Attack");
+        if (other.CompareTag("Enemy") && attackAxis == 1.0f)
+        {
+            if (hasAttacked == false)
+            {
+                equippedWeapon.GetComponent<Attack>().AttackMethod(other);
+                hasAttacked = true;
+            }
+        }
+        else
+        {
+            hasAttacked = false;
+        }
+        #endregion
     }
-#endregion
+
 
 }
