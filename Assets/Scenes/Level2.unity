@@ -337,13 +337,10 @@ Prefab:
       propertyPath: m_RootOrder
       value: 4
       objectReference: {fileID: 0}
-<<<<<<< Updated upstream:Assets/Scenes/Game.unity
-=======
     - target: {fileID: 1242908784742274, guid: d9e8cbb011a10f04ca4365941d277171, type: 2}
       propertyPath: m_Name
       value: Ground (4)
       objectReference: {fileID: 0}
->>>>>>> Stashed changes:Assets/Scenes/Level2.unity
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d9e8cbb011a10f04ca4365941d277171, type: 2}
   m_IsPrefabAsset: 0
@@ -659,11 +656,6 @@ Prefab:
 --- !u!1001 &1416420397
 Prefab:
   m_ObjectHideFlags: 0
-<<<<<<< Updated upstream:Assets/Scenes/Game.unity
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1518299929}
-=======
   serializedVersion: 2
   m_Modification:
     m_TransformParent: {fileID: 0}
@@ -758,24 +750,13 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1570789883}
->>>>>>> Stashed changes:Assets/Scenes/Level2.unity
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-<<<<<<< Updated upstream:Assets/Scenes/Game.unity
-  m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!4 &1592270142 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 4543132884013676, guid: d9e8cbb011a10f04ca4365941d277171,
-    type: 2}
-  m_PrefabInternal: {fileID: 1044366495}
-=======
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
->>>>>>> Stashed changes:Assets/Scenes/Level2.unity
 --- !u!4 &2109699722 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4543132884013676, guid: d9e8cbb011a10f04ca4365941d277171,
