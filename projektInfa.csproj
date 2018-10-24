@@ -314,7 +314,10 @@
   <ItemGroup>
     <Compile Include="Assets\Scripts\Attack.cs" />
     <Compile Include="Assets\Scripts\EnemyController.cs" />
+    <Compile Include="Assets\Scripts\GameManager.cs" />
+    <Compile Include="Assets\Scripts\HUDManager.cs" />
     <Compile Include="Assets\Scripts\PlayerController.cs" />
+    <Compile Include="Assets\Scripts\StartingMenuManager.cs" />
     <Compile Include="Assets\Scripts\WeaponStats.cs" />
   </ItemGroup>
   <ItemGroup>

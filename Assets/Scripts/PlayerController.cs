@@ -7,6 +7,9 @@ public class PlayerController : MonoBehaviour {
 
     //to do: Add animations, tweak player invincibility, to last until exit of an enemy collider
     //fix attack method
+    //add throwing previous weapons out
+    //add changing weapon stats and image at the beginning
+    //fix double jump
 
     #region Variables
     public float runningSpeed = 3.0f;
@@ -53,9 +56,10 @@ public class PlayerController : MonoBehaviour {
     private Slider healthSlider;
     #endregion
 
+<<<<<<< Updated upstream
     #region Start
     void Start() {
-        currentPlayerHealth = maxPlayerHealth;
+
     }
     #endregion
 
@@ -170,6 +174,12 @@ public class PlayerController : MonoBehaviour {
         {
             if (hasInteracted == false)
             {
+                //THROW PREVIOUS WEAPON OUT
+                //equippedWeapon.transform.GetComponentInChildren<GameObject>().SetActive(true);
+                //equippedWeapon.GetComponentInChildren<GameObject>().transform.parent = null;
+                //equippedWeapon.transform.DetachChildren();
+                //none of those above work seem to work
+                GameManager.instance.hudManager.heldWeaponDisplay.GetComponent<Image>().sprite = other.GetComponentInParent<SpriteRenderer>().sprite;
                 other.transform.root.gameObject.SetActive(false);
                 other.transform.parent.SetParent(equippedWeapon.transform);
                 other.transform.parent.localPosition = Vector2.zero;
@@ -199,14 +209,6 @@ public class PlayerController : MonoBehaviour {
         }
         #endregion
     }
-#endregion
 
-    #region Health Slider Changer
-    public void OnChangeHealth()
-    {
-        healthSlider.maxValue = maxPlayerHealth;
-        healthSlider.value = currentPlayerHealth;
-        healthSlider.GetComponentInChildren<Text>().text = currentPlayerHealth + "/" + maxPlayerHealth;
-    }
-#endregion
+        }
 }
