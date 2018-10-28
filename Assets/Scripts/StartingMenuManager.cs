@@ -35,6 +35,17 @@ public class StartingMenuManager : MonoBehaviour {
         audioSlider.value = audioLevel;
     }
 
+    private void FixedUpdate()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            if (settingsScreen.active)
+            {
+                ToggleSettings();
+            }
+        }
+    }
+
     public void StartGame()
     {
         SceneManager.LoadScene("Level1");
@@ -51,13 +62,6 @@ public class StartingMenuManager : MonoBehaviour {
     {
         ExitGame();
     }
-
-    /*public void SettingsOff()
-    {
-        mainScreen.SetActive(settingsDisplayed);
-        settingsDisplayed = !settingsDisplayed;
-        settingsScreen.SetActive(settingsDisplayed);
-    }*/
 
     public void setVolume()
     {
