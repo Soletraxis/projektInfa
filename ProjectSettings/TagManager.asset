@@ -9,6 +9,7 @@ TagManager:
   - EnemyWeapon
   - Missile
   - Weapon
+  - Exit
   layers:
   - Default
   - TransparentFX
