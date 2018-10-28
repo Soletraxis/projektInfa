@@ -51,15 +51,14 @@ public class PlayerController : MonoBehaviour {
 
     [SerializeField]
     private BoxCollider2D PlayerHitbox;
-
-    [SerializeField]
-    private Slider healthSlider;
     #endregion
 
-<<<<<<< Updated upstream
-    #region Start
-    void Start() {
-
+    #region Awake
+    void Awake() {
+        //ADD STATS AND IMAGE OF DEFAULT WEAPON
+        currentPlayerHealth = maxPlayerHealth;
+        equippedWeapon.GetComponent<Attack>().WeaponUpgrade();
+        DontDestroyOnLoad(gameObject);
     }
     #endregion
 
@@ -68,7 +67,6 @@ public class PlayerController : MonoBehaviour {
         walkMethod();
         jumpMethod();
         dodgeMethod();
-        OnChangeHealth();
     }
     #endregion
 
@@ -209,6 +207,15 @@ public class PlayerController : MonoBehaviour {
         }
         #endregion
     }
+    #endregion
 
+    #region OnTriggerStay
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.CompareTag("Exit"))
+        {
+            GameManager.instance.NextLevel();
         }
+    }
+#endregion
 }
