@@ -10,9 +10,16 @@ public class HUDManager : MonoBehaviour {
     private bool cancelActive = false;
     private bool settingsDisplayed = false;
     private bool gamePauseCanvasActive = false;
+    private float audioLevel = 0.5f;
+
+    [SerializeField]
+    private AudioSource gameAudio;
 
     [SerializeField]
     private Slider healthSlider;
+
+    [SerializeField]
+    private Slider audioSlider;
 
     [SerializeField]
     public GameObject player;
@@ -38,6 +45,7 @@ public class HUDManager : MonoBehaviour {
     {
         gamePauseUISettings.SetActive(false);
         gamePauseCanvas.SetActive(false);
+        audioSlider.value = audioLevel;
     }
 #endregion
 
@@ -105,4 +113,12 @@ public class HUDManager : MonoBehaviour {
         gamePauseUISettings.SetActive(settingsDisplayed);
     }
     #endregion
+    #region SetVolume
+    public void setVolume()
+    {
+        PlayerPrefs.SetFloat("audioLevel", audioSlider.value);
+        gameAudio.volume = audioSlider.value;
+    }
+#endregion
 }
+
