@@ -66,8 +66,8 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1004722389653168}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 3.57, y: 0.36397752, z: 0.10546875}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4855699457357646}
@@ -174,38 +174,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   HP: 150
-  speed: 3
-  enemyWidth: 0
-  enemyHeight: 0
-  idleFrameDuration: 0
-  patrolFrameDuration: 0
-  patrolDirection: 0
-  chaseAfterLosingPlayerSightFrameDuration: 2
-  patrolRange: 2
-  sightRange: 3
-  attackRange: 0.75
-  isGrounded: 0
-  isFacingWall: 0
-  playerInChaseRange: 0
-  playerInAttackRange: 0
-  sightOfPlayerLost: 0
-  direction: {x: 0, y: 0, z: 0}
-  patrolVect: {x: 0, y: 0}
-  groundLineCastPosition: {x: 0, y: 0, z: 0}
-  wallLineCastPosition: {x: 0, y: 0, z: 0}
-  chasedPlayerPosition: {x: 0, y: 0, z: 0}
-  groundLayer:
-    serializedVersion: 2
-    m_Bits: 1024
-  wallLayer:
-    serializedVersion: 2
-    m_Bits: 2048
-  playerLayer:
-    serializedVersion: 2
-    m_Bits: 256
-  initialPatrolPosition: {fileID: 0}
-  playerPosition: {fileID: 0}
-  enemyBody: {fileID: 50290393882230798}
 --- !u!212 &212369413105678716
 SpriteRenderer:
   m_ObjectHideFlags: 1

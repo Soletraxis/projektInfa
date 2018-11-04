@@ -4,56 +4,10 @@ using UnityEngine;
 
 public class EnemyController : MonoBehaviour {
 
-
-    //the Awake part is kinda not nice in terms of neat coding
-
-
     #region Variables
     public float HP = 150.0f;
-    public float speed = 5f;
-    public float enemyWidth;
-    public float enemyHeight;
-    public float idleFrameDuration;
-    public float patrolFrameDuration;
-    public float patrolDirection;
-    public float chaseAfterLosingPlayerSightFrameDuration;
-    public float patrolRange;
-    public float sightRange = 5f;
-    public float attackRange = 2f;
-    public bool isGrounded;
-    public bool isFacingWall;
-    public bool playerInChaseRange = false;
-    public bool playerInAttackRange = false;
-    public bool sightOfPlayerLost = false;
-    public Vector3 direction;
-    public Vector2 patrolVect;
-    public Vector3 groundLineCastPosition;
-    public Vector3 wallLineCastPosition;
-    public Vector3 chasedPlayerPosition;
-
-    [SerializeField]
-    public LayerMask groundLayer;
-
-    [SerializeField]
-    public LayerMask wallLayer;
-
-    [SerializeField]
-    public LayerMask playerLayer;
-
-    [SerializeField]
-    public Transform initialPatrolPosition;
-
-    [SerializeField]
-    public Transform playerPosition;
-
-    [SerializeField]
-    public Rigidbody2D enemyBody;
+    
     #endregion
-
-    private void Awake()
-    {
-        playerPosition = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
-    }
 
     public void TakeDamage(float DMG)
     {

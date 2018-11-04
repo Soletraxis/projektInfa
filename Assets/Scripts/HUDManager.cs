@@ -113,7 +113,6 @@ public class HUDManager : MonoBehaviour {
         gamePauseUISettings.SetActive(settingsDisplayed);
     }
     #endregion
-
     #region SetVolume
     public void setVolume()
     {
