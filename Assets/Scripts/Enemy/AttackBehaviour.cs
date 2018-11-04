@@ -4,17 +4,39 @@ using UnityEngine;
 
 public class AttackBehaviour : StateMachineBehaviour
 {
+    //TO DO:
+    //while attacking the enemy stops for a frame only
+
+    [SerializeField]
+    private EnemyController AI;
+
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
+        AI = animator.GetComponent<EnemyController>();
+        AI.enemyBody.velocity = Vector2.zero;
         //Attack
     }
 
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
+        AI.playerInAttackRange = Physics2D.CircleCast(AI.transform.position, AI.attackRange, Vector2.up, AI.attackRange, AI.playerLayer);
         //if player in range of attacking, attack again
+        if (AI.playerInAttackRange)
+        {
+            Debug.Log("Attack");
+
+            AI.enemyBody.velocity = Vector2.zero;
+            //Attack
+            Debug.Log("Attack");
+        }
         //if player out of attack range, go to chasing
+        else if (!AI.playerInAttackRange)
+        {
+            animator.SetBool("isAttacking", false);
+            animator.SetBool("isChasing", true);
+        }
     }
 
     // OnStateExit is called when a transition ends and the state machine finishes evaluating this state
