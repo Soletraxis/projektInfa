@@ -13,19 +13,19 @@ AnimatorController:
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   - m_Name: isChasing
     m_Type: 4
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   - m_Name: isAttacking
     m_Type: 4
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   m_AnimatorLayers:
   - serializedVersion: 5
     m_Name: Base Layer
@@ -39,6 +39,18 @@ AnimatorController:
     m_IKPass: 0
     m_SyncedLayerAffectsTiming: 0
     m_Controller: {fileID: 9100000}
+--- !u!114 &114180999832614472
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 90c3c0683160d7a41ae41239070be9c3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  AI: {fileID: 0}
 --- !u!114 &114236821123981264
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -61,6 +73,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 34a32ab939375834c91b20b68fccccde, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  AI: {fileID: 0}
 --- !u!114 &114813906084847724
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -72,6 +85,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b2ff038c529a41a4bb7c0a3ca0e147b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  AI: {fileID: 0}
 --- !u!114 &114884438827213672
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -83,6 +97,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a259c795962e3fe4e8fd6dee8d146208, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  AI: {fileID: 0}
 --- !u!1101 &1101310510024939136
 AnimatorStateTransition:
   m_ObjectHideFlags: 1
@@ -92,6 +107,9 @@ AnimatorStateTransition:
   m_Conditions:
   - m_ConditionMode: 1
     m_ConditionEvent: isAttacking
+    m_EventTreshold: 0
+  - m_ConditionMode: 2
+    m_ConditionEvent: isChasing
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 1102874195205915672}
@@ -141,6 +159,9 @@ AnimatorStateTransition:
   - m_ConditionMode: 2
     m_ConditionEvent: isChasing
     m_EventTreshold: 0
+  - m_ConditionMode: 2
+    m_ConditionEvent: isAttacking
+    m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 1102169318875329274}
   m_Solo: 0
@@ -164,6 +185,9 @@ AnimatorStateTransition:
   m_Conditions:
   - m_ConditionMode: 2
     m_ConditionEvent: isAttacking
+    m_EventTreshold: 0
+  - m_ConditionMode: 1
+    m_ConditionEvent: isChasing
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 1102009099210445728}
@@ -367,7 +391,8 @@ AnimatorState:
   m_CycleOffset: 0
   m_Transitions:
   - {fileID: 1101482934068889292}
-  m_StateMachineBehaviours: []
+  m_StateMachineBehaviours:
+  - {fileID: 114180999832614472}
   m_Position: {x: 50, y: 50, z: 0}
   m_IKOnFeet: 0
   m_WriteDefaultValues: 1

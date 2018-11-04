@@ -78,11 +78,7 @@ public class PlayerController : MonoBehaviour {
         {
             movementVect = new Vector2(hAxis * runningSpeed, playerBody.velocity.y);
             playerBody.velocity = movementVect;
-        }
-
-        //rotation to keep the groundcheck behind the player, and rotate the sprite
-        if (hAxis != 0.0f)
-        {
+            //rotation to keep the groundcheck behind the player, and rotate the sprite
             Vector3 direction = new Vector3(0.0f, 0.0f, hAxis);
             playerBody.transform.rotation = Quaternion.LookRotation(direction);
         }
@@ -193,11 +189,11 @@ public class PlayerController : MonoBehaviour {
 
         #region Attack Method
         attackAxis = Input.GetAxis("Attack");
-        if (other.CompareTag("Enemy") && attackAxis == 1.0f)
+        if (other.CompareTag("Enemy") && attackAxis > 0.0f)
         {
             if (hasAttacked == false)
             {
-                equippedWeapon.GetComponent<Attack>().AttackMethod(other);
+                equippedWeapon.GetComponent<Attack>().AttackMethod(other.GetComponent<Collider2D>());
                 hasAttacked = true;
             }
         }
@@ -209,7 +205,7 @@ public class PlayerController : MonoBehaviour {
     }
     #endregion
 
-    #region OnTriggerStay
+    #region OnTriggerEnter2D
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("Exit"))
