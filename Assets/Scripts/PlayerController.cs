@@ -7,7 +7,6 @@ public class PlayerController : MonoBehaviour {
 
     //to do: Add animations, tweak player invincibility, to last until exit of an enemy collider
     //fix attack method
-    //add throwing previous weapons out
     //add changing weapon stats and image at the beginning
     //fix double jump
 
@@ -29,7 +28,7 @@ public class PlayerController : MonoBehaviour {
     private float interactAxis;
     private float dodgeTimer;
     private int dodgeCount = 0;
-    public bool hasDodged = false;
+    private bool hasDodged = false;
     private Vector2 movementVect;
     private Vector2 dodgeVect;
     private bool hasJumped = false;
@@ -44,20 +43,26 @@ public class PlayerController : MonoBehaviour {
     private LayerMask groundLayers;
 
     [SerializeField]
+    private LayerMask enemyLayers;
+
+    [SerializeField]
     private Transform groundCheck;
 
     [SerializeField]
-    private GameObject equippedWeapon;
+    private Transform equippedWeapon;
 
     [SerializeField]
     private BoxCollider2D PlayerHitbox;
     #endregion
 
-    #region Awake
-    void Awake() {
+    #region Start
+    void Start() {
         //ADD STATS AND IMAGE OF DEFAULT WEAPON
         currentPlayerHealth = maxPlayerHealth;
+        equippedWeapon.transform.GetChild(0).gameObject.SetActive(true);
         equippedWeapon.GetComponent<Attack>().WeaponUpgrade();
+        GameManager.instance.hudManager.heldWeaponDisplay.GetComponent<Image>().sprite = equippedWeapon.transform.GetComponentInChildren<SpriteRenderer>().sprite;
+        equippedWeapon.transform.GetChild(0).gameObject.SetActive(false);
         DontDestroyOnLoad(gameObject);
     }
     #endregion
@@ -67,6 +72,7 @@ public class PlayerController : MonoBehaviour {
         walkMethod();
         jumpMethod();
         dodgeMethod();
+        //EnemyCollisionExit();
     }
     #endregion
 
@@ -77,10 +83,10 @@ public class PlayerController : MonoBehaviour {
         if (hAxis != 0.0f)
         {
             movementVect = new Vector2(hAxis * runningSpeed, playerBody.velocity.y);
-            playerBody.velocity = movementVect;
             //rotation to keep the groundcheck behind the player, and rotate the sprite
             Vector3 direction = new Vector3(0.0f, 0.0f, hAxis);
             playerBody.transform.rotation = Quaternion.LookRotation(direction);
+            playerBody.velocity = movementVect;
         }
     }
     #endregion
@@ -104,15 +110,14 @@ public class PlayerController : MonoBehaviour {
                 print("dupa");
                 playerBody.AddForce(Vector2.up * jAxis * jumpHeight, ForceMode2D.Impulse);
                 hasdoubleJumped = true;
-            }*/
+             }*/
         }
         else
         {
             hasJumped = false;
-            //hasdoubleJumped = false;
+            //hasdoubleJumped = false; 
             //xd = 3;
         }
-
     }
     #endregion
 
@@ -168,11 +173,8 @@ public class PlayerController : MonoBehaviour {
         {
             if (hasInteracted == false)
             {
-                //THROW PREVIOUS WEAPON OUT
-                //equippedWeapon.transform.GetComponentInChildren<GameObject>().SetActive(true);
-                //equippedWeapon.GetComponentInChildren<GameObject>().transform.parent = null;
-                //equippedWeapon.transform.DetachChildren();
-                //none of those above work seem to work
+                equippedWeapon.transform.GetChild(0).gameObject.SetActive(true);
+                equippedWeapon.GetComponentInChildren<WeaponStats>().transform.parent = null;
                 GameManager.instance.hudManager.heldWeaponDisplay.GetComponent<Image>().sprite = other.GetComponentInParent<SpriteRenderer>().sprite;
                 other.transform.root.gameObject.SetActive(false);
                 other.transform.parent.SetParent(equippedWeapon.transform);
@@ -213,5 +215,34 @@ public class PlayerController : MonoBehaviour {
             GameManager.instance.NextLevel();
         }
     }
-#endregion
+    #endregion
+
+    /*#region Collision Methods
+
+    private void OnCollisionEnter2D(Collision2D other)
+    {
+        if (other.collider.CompareTag("Enemy") && playerBody.isKinematic == false)
+        {
+            playerBody.isKinematic = true;
+            playerBody.velocity = Vector2.zero;
+            other.collider.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
+        }
+    }
+
+    private void OnCollisionStay2D(Collision2D other)
+    {
+        if (other.collider.CompareTag("Enemy"))
+        {
+            playerBody.isKinematic = true;
+        }
+    }
+
+    private void EnemyCollisionExit()
+    {
+        if (playerBody.isKinematic == true)
+        {
+            playerBody.isKinematic = false;
+        }
+    }
+    #endregion*/
 }
