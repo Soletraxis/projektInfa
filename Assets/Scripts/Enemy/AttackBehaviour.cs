@@ -21,7 +21,6 @@ public class AttackBehaviour : StateMachineBehaviour
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        AI.playerInAttackRange = Physics2D.CircleCast(AI.transform.position, AI.attackRange, Vector2.up, AI.attackRange, AI.playerLayer);
         //if player in range of attacking, attack again
         if (AI.playerInAttackRange)
         {

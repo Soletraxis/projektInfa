@@ -22,7 +22,6 @@ public class IdleBehaviour : StateMachineBehaviour {
     {
         AI.idleFrameDuration -= Time.deltaTime;
         //if player in range, chase
-        AI.playerInChaseRange = Physics2D.CircleCast(AI.transform.position, AI.sightRange, Vector2.up, AI.sightRange, AI.playerLayer);
         if (AI.playerInChaseRange)
         {
             animator.SetBool("isChasing", true);

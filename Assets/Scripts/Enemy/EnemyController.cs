@@ -48,11 +48,19 @@ public class EnemyController : MonoBehaviour {
 
     [SerializeField]
     public Rigidbody2D enemyBody;
+
+    [SerializeField]
+    public CircleCollider2D sightRangeCollider;
+
+    [SerializeField]
+    public CircleCollider2D attackRangeCollider;
     #endregion
 
     private void Awake()
     {
         playerPosition = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
+        sightRangeCollider.radius = sightRange;
+        attackRangeCollider.radius = attackRange;
     }
 
     public void TakeDamage(float DMG)
