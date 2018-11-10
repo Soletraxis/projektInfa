@@ -32,7 +32,6 @@ public class PatrolBehaviour : StateMachineBehaviour {
             AI.enemyBody.velocity = Vector2.zero;
         }
         //if player in range, start chasing
-        AI.playerInChaseRange = Physics2D.CircleCast(AI.transform.position, AI.sightRange, Vector2.up, AI.sightRange, AI.playerLayer);
         if (AI.playerInChaseRange)
         {
             animator.SetBool("isPatrolling", false);
