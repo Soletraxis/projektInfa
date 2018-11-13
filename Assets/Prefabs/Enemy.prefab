@@ -241,7 +241,7 @@ MonoBehaviour:
   patrolDirection: 0
   chaseAfterLosingPlayerSightFrameDuration: 2
   patrolRange: 2
-  sightRange: 3
+  sightRange: 4
   attackRange: 0.75
   isGrounded: 0
   isFacingWall: 0

@@ -97,6 +97,22 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &1764054232693652
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4750018825058962}
+  - component: {fileID: 114461252116237626}
+  m_Layer: 8
+  m_Name: PlayerContactChecker
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!4 &4082116518288692
 Transform:
   m_ObjectHideFlags: 1
@@ -122,6 +138,7 @@ Transform:
   m_Children:
   - {fileID: 4971936164779736}
   - {fileID: 4831923154063554}
+  - {fileID: 4750018825058962}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -138,6 +155,19 @@ Transform:
   - {fileID: 4082116518288692}
   m_Father: {fileID: 4971936164779736}
   m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &4750018825058962
+Transform:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1764054232693652}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4208600997770646}
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4831923154063554
 Transform:
@@ -391,6 +421,7 @@ MonoBehaviour:
   jumpHeight: 5
   dodgeSpeed: 8
   dodgeInterval: 1
+  dodgeTimer: 0
   dodgeIFrames: 20
   lastDodgeFrames: 3
   maxPlayerHealth: 100
@@ -404,7 +435,17 @@ MonoBehaviour:
     m_Bits: 512
   groundCheck: {fileID: 4831923154063554}
   equippedWeapon: {fileID: 4971936164779736}
-  PlayerHitbox: {fileID: 61889194739670096}
+--- !u!114 &114461252116237626
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1764054232693652}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f844d663d4e51bd4e827bc9a40a496ee, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114740229775162142
 MonoBehaviour:
   m_ObjectHideFlags: 1
