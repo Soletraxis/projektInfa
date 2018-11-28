@@ -9,7 +9,6 @@ public class HUDManager : MonoBehaviour {
     #region Variables
     private bool cancelActive = false;
     private bool settingsDisplayed = false;
-    private bool gamePauseCanvasActive = false;
     private float audioLevel = 0.5f;
 
     [SerializeField]
@@ -113,6 +112,7 @@ public class HUDManager : MonoBehaviour {
         gamePauseUISettings.SetActive(settingsDisplayed);
     }
     #endregion
+
     #region SetVolume
     public void setVolume()
     {

@@ -314,13 +314,16 @@
   <ItemGroup>
     <Compile Include="Assets\Scripts\Attack.cs" />
     <Compile Include="Assets\Scripts\Enemy\AttackBehaviour.cs" />
+    <Compile Include="Assets\Scripts\Enemy\AttackSphereColliderController.cs" />
     <Compile Include="Assets\Scripts\Enemy\ChasePlayerBehaviour.cs" />
     <Compile Include="Assets\Scripts\Enemy\EnemyController.cs" />
     <Compile Include="Assets\Scripts\Enemy\IdleBehaviour.cs" />
     <Compile Include="Assets\Scripts\Enemy\PatrolBehaviour.cs" />
+    <Compile Include="Assets\Scripts\Enemy\SightSphereColliderController.cs" />
     <Compile Include="Assets\Scripts\GameManager.cs" />
     <Compile Include="Assets\Scripts\HUDManager.cs" />
-    <Compile Include="Assets\Scripts\PlayerController.cs" />
+    <Compile Include="Assets\Scripts\Player\playerContactChecker.cs" />
+    <Compile Include="Assets\Scripts\Player\PlayerController.cs" />
     <Compile Include="Assets\Scripts\StartingMenuManager.cs" />
     <Compile Include="Assets\Scripts\WeaponStats.cs" />
   </ItemGroup>
