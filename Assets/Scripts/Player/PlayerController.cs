@@ -37,6 +37,7 @@ public class PlayerController : MonoBehaviour {
     private bool canPressJump = true;
     private bool hasAttacked = false;
     private bool hasInteracted = false;
+    private int jumpCount = 0;
 
     [SerializeField]
     private Rigidbody2D playerBody;
@@ -93,25 +94,36 @@ public class PlayerController : MonoBehaviour {
     #region Jump Method
     private void jumpMethod()
     {
+        bool isGrounded = IsGrounded();
+        if (isGrounded)
+        {
+            jumpCount = 0;
+        }
+
         jAxis = Input.GetKeyDown(KeyCode.Space);
         float jumpForce = 1f;
         if (jAxis)
         {
-            //xd = jAxis;
-            bool isGrounded = IsGrounded();
-            if (isGrounded == true && canPressJump)
+            if (canPressJump && jumpCount < 1)
             {
+                print(jumpCount);
+                if(playerBody.velocity.y < 0)
+                {
+                    jumpForce *= 2;
+                }
                 playerBody.velocity.Set(playerBody.velocity.x, 0);
                 playerBody.AddForce(Vector2.up * jumpForce* jumpHeight, ForceMode2D.Impulse);
                 hasJumped = true;
                 canDoubleJump = true;
                 canPressJump = false;
+                jumpCount += 1;
             } else
             {
                 if(canDoubleJump)
                 {
                     canDoubleJump = false;
                     playerBody.AddForce(Vector2.up * jumpForce * jumpHeight, ForceMode2D.Impulse);
+                    jumpCount += 1;
                 }
             }
         } else
