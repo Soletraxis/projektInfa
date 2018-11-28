@@ -24,7 +24,7 @@ public class PlayerController : MonoBehaviour {
     //public float xd = 3;
 
     private float hAxis;
-    private float jAxis;
+    private bool jAxis;
     private float dodgeAxis;
     private float attackAxis;
     private float interactAxis;
@@ -33,7 +33,8 @@ public class PlayerController : MonoBehaviour {
     private Vector2 movementVect;
     private Vector2 dodgeVect;
     private bool hasJumped = false;
-    //private bool hasdoubleJumped = false;
+    private bool canDoubleJump = false;
+    private bool canPressJump = true;
     private bool hasAttacked = false;
     private bool hasInteracted = false;
 
@@ -92,29 +93,30 @@ public class PlayerController : MonoBehaviour {
     #region Jump Method
     private void jumpMethod()
     {
-        jAxis = Input.GetAxis("Jump");
-        if (jAxis > 0.0f/* && jAxis != xd*/)
+        jAxis = Input.GetKeyDown(KeyCode.Space);
+        float jumpForce = 1f;
+        if (jAxis)
         {
             //xd = jAxis;
             bool isGrounded = IsGrounded();
-            if (isGrounded == true && hasJumped == false/* && hasdoubleJumped == false*/)
+            if (isGrounded == true && canPressJump)
             {
-                playerBody.AddForce(Vector2.up * jAxis * jumpHeight, ForceMode2D.Impulse);
+                playerBody.velocity.Set(playerBody.velocity.x, 0);
+                playerBody.AddForce(Vector2.up * jumpForce* jumpHeight, ForceMode2D.Impulse);
                 hasJumped = true;
-                //print("xd");
-            }
-            /*if (hasdoubleJumped == false && hasJumped == true && isGrounded == false)
+                canDoubleJump = true;
+                canPressJump = false;
+            } else
             {
-                print("dupa");
-                playerBody.AddForce(Vector2.up * jAxis * jumpHeight, ForceMode2D.Impulse);
-                hasdoubleJumped = true;
-             }*/
-        }
-        else
+                if(canDoubleJump)
+                {
+                    canDoubleJump = false;
+                    playerBody.AddForce(Vector2.up * jumpForce * jumpHeight, ForceMode2D.Impulse);
+                }
+            }
+        } else
         {
-            hasJumped = false;
-            //hasdoubleJumped = false; 
-            //xd = 3;
+            canPressJump = true;
         }
     }
     #endregion
