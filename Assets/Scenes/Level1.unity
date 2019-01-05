@@ -848,6 +848,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 0}
+  cameraVelocity: 2
 --- !u!20 &519420031
 Camera:
   m_ObjectHideFlags: 0

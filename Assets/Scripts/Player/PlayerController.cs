@@ -160,7 +160,7 @@ public class PlayerController : MonoBehaviour {
             if (dodgeCount <= dodgeIFrames && dodgeCount >= lastDodgeFrames)
             {
                 //dodge extension when on an enemy
-                if (GetComponentInChildren<playerContactChecker>().isInContact())
+                if (GetComponentInChildren<PlayerContactChecker>().IsInContact())
                 {
                     dodgeCount++;
                 }

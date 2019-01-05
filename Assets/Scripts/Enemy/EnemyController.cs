@@ -10,6 +10,7 @@ public class EnemyController : MonoBehaviour {
 
     #region Variables
     public float HP = 150.0f;
+    public float initialSpeed;
     public float speed = 5f;
     public float enemyWidth;
     public float enemyHeight;
@@ -58,6 +59,7 @@ public class EnemyController : MonoBehaviour {
 
     private void Awake()
     {
+        initialSpeed = speed;
         playerPosition = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
         sightRangeCollider.radius = sightRange;
         attackRangeCollider.radius = attackRange;
