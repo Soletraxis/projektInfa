@@ -4,10 +4,6 @@ using UnityEngine;
 
 public class EnemyController : MonoBehaviour {
 
-
-    //the Awake part is kinda not nice in terms of neat coding
-
-
     #region Variables
     public float HP = 150.0f;
     public float initialSpeed;
@@ -21,6 +17,7 @@ public class EnemyController : MonoBehaviour {
     public float patrolRange;
     public float sightRange = 5f;
     public float attackRange = 2f;
+    public int lastAttack;
     public bool isGrounded;
     public bool isFacingWall;
     public bool playerInChaseRange = false;
