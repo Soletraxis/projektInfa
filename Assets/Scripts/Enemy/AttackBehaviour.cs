@@ -24,8 +24,6 @@ public class AttackBehaviour : StateMachineBehaviour
         //if player in range of attacking, attack again
         if (AI.playerInAttackRange)
         {
-            Debug.Log("Attack");
-
             AI.enemyBody.velocity = Vector2.zero;
             //Attack
             Debug.Log("Attack");
