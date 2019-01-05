@@ -474,7 +474,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   runningSpeed: 4
-  jumpHeight: 5
+  jumpPower: 7
   dodgeSpeed: 8
   dodgeInterval: 1
   dodgeTimer: 0
