@@ -70,4 +70,12 @@ public class EnemyController : MonoBehaviour {
             Destroy(gameObject);
         }
     }
+
+    private void DeathCheck()
+    {
+        if (HP <= 0.0f)
+        {
+            Destroy(gameObject);
+        }
+    }
 }

@@ -15,7 +15,7 @@ public class BossIdleBehaviour : StateMachineBehaviour {
         //stop movement
         AI.enemyBody.velocity = Vector2.zero;
         AI.idleFrameDuration = 3f;
-        AI.lastAttack = (int)Random.Range(1.0f, 4.99f);
+        AI.lastAttack = (int)Random.Range(1.0f, 2.99f);
     }
 
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks

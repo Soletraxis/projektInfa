@@ -69,7 +69,7 @@ public class PlayerController : MonoBehaviour {
         walkMethod();
         jumpMethod();
         dodgeMethod();
-        //EnemyCollisionExit();
+        DeathCheck();
     }
     #endregion
 
@@ -200,6 +200,16 @@ public class PlayerController : MonoBehaviour {
             hasAttacked = false;
         }
         #endregion
+    }
+    #endregion
+
+    #region DeathCheck
+    private void DeathCheck()
+    {
+        if (currentPlayerHealth <= 0.0f)
+        {
+            Destroy(gameObject);
+        }
     }
     #endregion
 
