@@ -2,18 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class playerContactChecker : MonoBehaviour {
+public class PlayerContactChecker : MonoBehaviour {
 
-
-
-    #region isInContact
-    public bool isInContact()
+	public bool IsInContact()
     {
-        return Physics2D.OverlapCircle(transform.position, GetComponentInParent<BoxCollider2D>().size.x/2, LayerMask.GetMask("Enemy"));
-
-        /*return Physics2D.OverlapBox(new Vector2(-GetComponentInParent<BoxCollider2D>().bounds.extents.x / 2.0f, -GetComponentInParent<BoxCollider2D>().bounds.extents.y / 2.0f),
-            new Vector2(GetComponentInParent<BoxCollider2D>().bounds.extents.x / 2.0f, GetComponentInParent<BoxCollider2D>().bounds.extents.y / 2.0f), LayerMask.GetMask("Enemy"));
-    */
+        return Physics2D.OverlapCircle(transform.position, GetComponentInParent<BoxCollider2D>().size.x / 2, LayerMask.GetMask("Enemy"));
     }
-    #endregion
 }

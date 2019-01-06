@@ -29,7 +29,13 @@ public class ChasePlayerBehaviour : StateMachineBehaviour {
         AI.chaseAfterLosingPlayerSightFrameDuration -= Time.deltaTime;
         if (AI.isGrounded)
         {
-            if (AI.playerInChaseRange)
+            //if player in range of attack, go to Attack
+            if (AI.playerInAttackRange)
+            {
+                animator.SetBool("isAttacking", true);
+                animator.SetBool("isChasing", false);
+            }
+            else if (AI.playerInChaseRange)
             {
                 //move towards player
                 AI.chasedPlayerPosition = AI.playerPosition.position;
@@ -56,12 +62,6 @@ public class ChasePlayerBehaviour : StateMachineBehaviour {
                     animator.SetBool("isChasing", false);
                     animator.SetBool("isAttacking", false);
                 }
-            }
-            //if player in range of attack, go to Attack
-            if (AI.playerInAttackRange)
-            {
-                animator.SetBool("isChasing", false);
-                animator.SetBool("isAttacking", true);
             }
         }
         else

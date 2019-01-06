@@ -4,12 +4,9 @@ using UnityEngine;
 
 public class EnemyController : MonoBehaviour {
 
-
-    //the Awake part is kinda not nice in terms of neat coding
-
-
     #region Variables
     public float HP = 150.0f;
+    public float initialSpeed;
     public float speed = 5f;
     public float enemyWidth;
     public float enemyHeight;
@@ -20,6 +17,7 @@ public class EnemyController : MonoBehaviour {
     public float patrolRange;
     public float sightRange = 5f;
     public float attackRange = 2f;
+    public int lastAttack;
     public bool isGrounded;
     public bool isFacingWall;
     public bool playerInChaseRange = false;
@@ -58,6 +56,7 @@ public class EnemyController : MonoBehaviour {
 
     private void Awake()
     {
+        initialSpeed = speed;
         playerPosition = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
         sightRangeCollider.radius = sightRange;
         attackRangeCollider.radius = attackRange;
@@ -67,6 +66,14 @@ public class EnemyController : MonoBehaviour {
     {
         HP -= DMG;
         if (HP <= 0)
+        {
+            Destroy(gameObject);
+        }
+    }
+
+    private void DeathCheck()
+    {
+        if (HP <= 0.0f)
         {
             Destroy(gameObject);
         }

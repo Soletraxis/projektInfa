@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class IdleBehaviour : StateMachineBehaviour {
+public class BossIdleBehaviour : StateMachineBehaviour {
 
 
     [SerializeField]
@@ -14,26 +14,18 @@ public class IdleBehaviour : StateMachineBehaviour {
         AI = animator.GetComponent<EnemyController>();
         //stop movement
         AI.enemyBody.velocity = Vector2.zero;
-        AI.idleFrameDuration = 1f;
+        AI.idleFrameDuration = 3f;
+        AI.lastAttack = (int)Random.Range(1.0f, 2.99f);
     }
 
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         AI.idleFrameDuration -= Time.deltaTime;
-        //if player in range, chase
-        if (AI.playerInAttackRange)
-        {
-            animator.SetBool("isAttacking", true);
-        }
-        if (AI.playerInChaseRange)
-        {
-            animator.SetBool("isChasing", true);
-        }
-        //if not, start patrolling
         if (AI.idleFrameDuration <= 0)
         {
-            animator.SetBool("isPatrolling", true);
+            animator.SetBool("Move" + AI.lastAttack, true);
+            animator.SetBool("isIdle", false);
         }
     }
 

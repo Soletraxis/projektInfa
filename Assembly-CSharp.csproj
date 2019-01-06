@@ -62,17 +62,24 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Scripts\Attack.cs" />
+    <Compile Include="Assets\Scripts\Boss\BossAttackBehaviour1.cs" />
+    <Compile Include="Assets\Scripts\Boss\BossAttackBehaviour2.cs" />
+    <Compile Include="Assets\Scripts\Boss\BossIdleBehaviour.cs" />
+    <Compile Include="Assets\Scripts\CameraFollowScript.cs" />
     <Compile Include="Assets\Scripts\Enemy\AttackBehaviour.cs" />
     <Compile Include="Assets\Scripts\Enemy\AttackSphereColliderController.cs" />
     <Compile Include="Assets\Scripts\Enemy\ChasePlayerBehaviour.cs" />
     <Compile Include="Assets\Scripts\Enemy\EnemyController.cs" />
+    <Compile Include="Assets\Scripts\Enemy\EnemyDMGTakeController.cs" />
     <Compile Include="Assets\Scripts\Enemy\IdleBehaviour.cs" />
     <Compile Include="Assets\Scripts\Enemy\PatrolBehaviour.cs" />
     <Compile Include="Assets\Scripts\Enemy\SightSphereColliderController.cs" />
     <Compile Include="Assets\Scripts\GameManager.cs" />
     <Compile Include="Assets\Scripts\HUDManager.cs" />
-    <Compile Include="Assets\Scripts\Player\playerContactChecker.cs" />
+    <Compile Include="Assets\Scripts\Player\MovementDisabler.cs" />
+    <Compile Include="Assets\Scripts\Player\PlayerContactChecker.cs" />
     <Compile Include="Assets\Scripts\Player\PlayerController.cs" />
+    <Compile Include="Assets\Scripts\Player\PlayerDMGTakeController.cs" />
     <Compile Include="Assets\Scripts\StartingMenuManager.cs" />
     <Compile Include="Assets\Scripts\WeaponStats.cs" />
     <None Include="Assets\Sprites\do wywalenia(tymczasowe\License.txt" />

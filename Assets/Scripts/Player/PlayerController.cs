@@ -13,7 +13,7 @@ public class PlayerController : MonoBehaviour {
 
     #region Variables
     public float runningSpeed = 3.0f;
-    public float jumpHeight = 3.0f;
+    public float jumpPower = 3.0f;
     public float dodgeSpeed = 10.0f;
     public float dodgeInterval = 5.0f;
     public float dodgeTimer;
@@ -25,7 +25,6 @@ public class PlayerController : MonoBehaviour {
     //public float xd = 3;
 
     private float hAxis;
-    private bool jAxis;
     private float dodgeAxis;
     private float attackAxis;
     private float interactAxis;
@@ -33,12 +32,9 @@ public class PlayerController : MonoBehaviour {
     private bool hasDodged = false;
     private Vector2 movementVect;
     private Vector2 dodgeVect;
-    private bool hasJumped = false;
-    private bool canDoubleJump = false;
-    private bool canPressJump = true;
     private bool hasAttacked = false;
     private bool hasInteracted = false;
-    private int jumpCount = 0;
+    private int jumpCount = 2;
 
     [SerializeField]
     private Rigidbody2D playerBody;
@@ -73,7 +69,7 @@ public class PlayerController : MonoBehaviour {
         walkMethod();
         jumpMethod();
         dodgeMethod();
-        //EnemyCollisionExit();
+        DeathCheck();
     }
     #endregion
 
@@ -95,41 +91,23 @@ public class PlayerController : MonoBehaviour {
     #region Jump Method
     private void jumpMethod()
     {
-        bool isGrounded = IsGrounded();
-        if (isGrounded)
+        if (Input.GetKeyDown(KeyCode.Space) && IsGrounded() && jumpCount == 2)
         {
-            jumpCount = 0;
+            jumpCount--;
+            //Debug.Log("First jump!");
+            playerBody.velocity = new Vector2(playerBody.velocity.x, jumpPower);
+            //playerBody.AddForce(Vector2.up * jumpPower, ForceMode2D.Impulse);
+        } // to switch back to force based jumping, uncomment the Addforce, and set velocity.y to 0.0f
+        else if(Input.GetKeyDown(KeyCode.Space) && !IsGrounded() && jumpCount > 0)
+        {
+            jumpCount -= 2;
+            //Debug.Log("Second jump!");
+            playerBody.velocity = new Vector2(playerBody.velocity.x, jumpPower);
+            //playerBody.AddForce(Vector2.up * jumpPower, ForceMode2D.Impulse);
         }
-
-        jAxis = Input.GetKeyDown(KeyCode.Space);
-        float jumpForce = 1f;
-        if (jAxis)
+        if(IsGrounded() && jumpCount != 2)
         {
-            if (canPressJump && jumpCount < 1)
-            {
-                print(jumpCount);
-                if(playerBody.velocity.y < 0)
-                {
-                    jumpForce *= 2;
-                }
-                playerBody.velocity.Set(playerBody.velocity.x, 0);
-                playerBody.AddForce(Vector2.up * jumpForce* jumpHeight, ForceMode2D.Impulse);
-                hasJumped = true;
-                canDoubleJump = true;
-                canPressJump = false;
-                jumpCount += 1;
-            } else
-            {
-                if(canDoubleJump)
-                {
-                    canDoubleJump = false;
-                    playerBody.AddForce(Vector2.up * jumpForce * jumpHeight, ForceMode2D.Impulse);
-                    jumpCount += 1;
-                }
-            }
-        } else
-        {
-            canPressJump = true;
+            jumpCount = 2;
         }
     }
     #endregion
@@ -160,7 +138,7 @@ public class PlayerController : MonoBehaviour {
             if (dodgeCount <= dodgeIFrames && dodgeCount >= lastDodgeFrames)
             {
                 //dodge extension when on an enemy
-                if (GetComponentInChildren<playerContactChecker>().isInContact())
+                if (GetComponentInChildren<PlayerContactChecker>().IsInContact())
                 {
                     dodgeCount++;
                 }
@@ -225,6 +203,16 @@ public class PlayerController : MonoBehaviour {
     }
     #endregion
 
+    #region DeathCheck
+    private void DeathCheck()
+    {
+        if (currentPlayerHealth <= 0.0f)
+        {
+            Destroy(gameObject);
+        }
+    }
+    #endregion
+
     #region OnTriggerEnter2D
     private void OnTriggerEnter2D(Collider2D other)
     {
@@ -235,32 +223,4 @@ public class PlayerController : MonoBehaviour {
     }
     #endregion
 
-    /*#region Collision Methods
-
-    private void OnCollisionEnter2D(Collision2D other)
-    {
-        if (other.collider.CompareTag("Enemy") && playerBody.isKinematic == false)
-        {
-            playerBody.isKinematic = true;
-            playerBody.velocity = Vector2.zero;
-            other.collider.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
-        }
-    }
-
-    private void OnCollisionStay2D(Collision2D other)
-    {
-        if (other.collider.CompareTag("Enemy"))
-        {
-            playerBody.isKinematic = true;
-        }
-    }
-
-    private void EnemyCollisionExit()
-    {
-        if (playerBody.isKinematic == true)
-        {
-            playerBody.isKinematic = false;
-        }
-    }
-    #endregion*/
 }
