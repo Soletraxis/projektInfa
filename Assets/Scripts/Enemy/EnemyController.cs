@@ -17,12 +17,17 @@ public class EnemyController : MonoBehaviour {
     public float patrolRange;
     public float sightRange = 5f;
     public float attackRange = 2f;
+    public float startTimeBtwAttack;
+    public float timeBtwAttack;
     public int lastAttack;
     public bool isGrounded;
     public bool isFacingWall;
     public bool playerInChaseRange = false;
     public bool playerInAttackRange = false;
     public bool sightOfPlayerLost = false;
+    public bool isFighting = false;
+    public bool isFightingRange = false;
+    public bool isFightingJump = false;
     public Vector3 direction;
     public Vector2 patrolVect;
     public Vector3 groundLineCastPosition;
@@ -65,10 +70,7 @@ public class EnemyController : MonoBehaviour {
     public void TakeDamage(float DMG)
     {
         HP -= DMG;
-        if (HP <= 0)
-        {
-            Destroy(gameObject);
-        }
+        DeathCheck();
     }
 
     private void DeathCheck()

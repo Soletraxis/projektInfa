@@ -19,10 +19,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4831923154063554}
-  m_Layer: 8
+  m_Layer: 16
   m_Name: PlayerGroundCheck
   m_TagString: Untagged
-  m_Icon: {fileID: 3936346786652291628, guid: 0000000000000000d000000000000000, type: 0}
+  m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -38,7 +38,7 @@ GameObject:
   - component: {fileID: 61602295964937674}
   - component: {fileID: 50760764040583286}
   - component: {fileID: 114855149232549946}
-  m_Layer: 14
+  m_Layer: 16
   m_Name: DefaultWeapon
   m_TagString: Weapon
   m_Icon: {fileID: 0}
@@ -55,7 +55,7 @@ GameObject:
   - component: {fileID: 4584764436872892}
   - component: {fileID: 114049998047192048}
   - component: {fileID: 61413464370601264}
-  m_Layer: 8
+  m_Layer: 16
   m_Name: PlayerDMGTakeController
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -72,7 +72,7 @@ GameObject:
   - component: {fileID: 4899343073378354}
   - component: {fileID: 114468785196423174}
   - component: {fileID: 61905781632044502}
-  m_Layer: 8
+  m_Layer: 16
   m_Name: MovementDisabler
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -92,6 +92,7 @@ GameObject:
   - component: {fileID: 61889194739670096}
   - component: {fileID: 114371926512449514}
   - component: {fileID: 82618098163202410}
+  - component: {fileID: 95797626630330578}
   m_Layer: 8
   m_Name: Player
   m_TagString: Player
@@ -108,7 +109,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4082116518288692}
   - component: {fileID: 61175618785503682}
-  m_Layer: 13
+  m_Layer: 16
   m_Name: DefaultWeaponTrigger
   m_TagString: Weapon
   m_Icon: {fileID: 0}
@@ -124,7 +125,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4971936164779736}
   - component: {fileID: 114740229775162142}
-  m_Layer: 8
+  m_Layer: 16
   m_Name: equippedWeapon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -139,8 +140,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4750018825058962}
-  - component: {fileID: 114461252116237626}
-  m_Layer: 8
+  - component: {fileID: 114641445164446028}
+  m_Layer: 16
   m_Name: PlayerContactChecker
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -225,7 +226,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1416028850516288}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.412, y: -0.433, z: 0}
+  m_LocalPosition: {x: -0.412, y: -0.529, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4208600997770646}
@@ -385,18 +386,18 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: -0.024019718, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1.06, y: 0.8}
+    oldSize: {x: 1, y: 1}
     newSize: {x: 1.06, y: 0.8}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.06, y: 0.8}
+  m_Size: {x: 0.47156668, y: 1}
   m_EdgeRadius: 0
 --- !u!61 &61905781632044502
 BoxCollider2D:
@@ -421,7 +422,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.2, y: 0.7}
+  m_Size: {x: 0.5, y: 0.7}
   m_EdgeRadius: 0
 --- !u!82 &82618098163202410
 AudioSource:
@@ -518,6 +519,24 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!95 &95797626630330578
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1557619202543532}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: e0d085d24f8353f428c010fa97ae2085, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!114 &114049998047192048
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -546,10 +565,13 @@ MonoBehaviour:
   dodgeSpeed: 8
   dodgeInterval: 1
   dodgeTimer: 0
-  dodgeIFrames: 20
-  lastDodgeFrames: 3
+  startTimeBtwAttack: 0.3
+  attackRange: 0.5
   maxPlayerHealth: 100
   currentPlayerHealth: 1
+  dodgeIFrames: 20
+  lastDodgeFrames: 3
+  animator: {fileID: 95797626630330578}
   playerBody: {fileID: 50638422194468848}
   groundLayers:
     serializedVersion: 2
@@ -559,17 +581,6 @@ MonoBehaviour:
     m_Bits: 512
   groundCheck: {fileID: 4831923154063554}
   equippedWeapon: {fileID: 4971936164779736}
---- !u!114 &114461252116237626
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1764054232693652}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f844d663d4e51bd4e827bc9a40a496ee, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &114468785196423174
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -579,6 +590,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d3babc4608c27694b800ba05a62dde2d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &114641445164446028
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1764054232693652}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f844d663d4e51bd4e827bc9a40a496ee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &114740229775162142
@@ -644,7 +666,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: b2b057d22c834844d81ddcf381b37067, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 70023b1c6c621f9419c5c80252496317, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

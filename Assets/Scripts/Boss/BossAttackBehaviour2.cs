@@ -14,6 +14,7 @@ public class BossAttackBehaviour2 : StateMachineBehaviour
         AI = animator.GetComponent<EnemyController>();
         AI.enemyBody.velocity = Vector2.zero;
         attackDuration = 2.0f;
+        AI.isFightingJump = true;
         //Laser Attack
     }
 
@@ -25,6 +26,7 @@ public class BossAttackBehaviour2 : StateMachineBehaviour
         {
             animator.SetBool("Move" + AI.lastAttack, false);
             animator.SetBool("isIdle", true);
+            AI.isFightingJump = false;
         }
     }
 

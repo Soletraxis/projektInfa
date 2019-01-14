@@ -15,9 +15,9 @@ public class ChasePlayerBehaviour : StateMachineBehaviour {
         AI = animator.GetComponent<EnemyController>();
 
         AI.chasedPlayerPosition = AI.playerPosition.position;
-        AI.direction = AI.chasedPlayerPosition - AI.transform.position;
-        AI.transform.rotation = Quaternion.LookRotation(new Vector3(0.0f, 0.0f, AI.direction.z));
-        AI.enemyBody.velocity = new Vector2(AI.speed * (1.0f * Mathf.Abs(AI.direction.x) / AI.direction.x), 0.0f);
+        AI.direction = AI.chasedPlayerPosition - AI.enemyBody.transform.position;
+        AI.enemyBody.transform.rotation = Quaternion.LookRotation(new Vector3(0.0f, 0.0f, AI.direction.x));
+        AI.enemyBody.velocity = new Vector2(AI.speed * (1.0f * Mathf.Abs(AI.direction.x) / AI.direction.x), AI.enemyBody.velocity.y);
     }
 
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
@@ -40,7 +40,7 @@ public class ChasePlayerBehaviour : StateMachineBehaviour {
                 //move towards player
                 AI.chasedPlayerPosition = AI.playerPosition.position;
                 AI.direction = AI.chasedPlayerPosition - AI.transform.position;
-                AI.transform.rotation = Quaternion.LookRotation(new Vector3(0.0f, 0.0f, AI.direction.z));
+                AI.enemyBody.transform.rotation = Quaternion.LookRotation(new Vector3(0.0f, 0.0f, AI.direction.x));
                 AI.enemyBody.velocity = new Vector2(AI.speed * (1.0f * Mathf.Abs(AI.direction.x) / AI.direction.x), AI.enemyBody.velocity.y);
             }
             else if (!AI.playerInChaseRange)

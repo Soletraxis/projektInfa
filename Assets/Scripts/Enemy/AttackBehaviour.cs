@@ -16,6 +16,10 @@ public class AttackBehaviour : StateMachineBehaviour
         AI = animator.GetComponent<EnemyController>();
         AI.enemyBody.velocity = Vector2.zero;
         //Attack
+
+        AI.chasedPlayerPosition = AI.playerPosition.position;
+        AI.direction = AI.chasedPlayerPosition - AI.transform.position;
+        AI.enemyBody.transform.rotation = Quaternion.LookRotation(new Vector3(0.0f, 0.0f, AI.direction.x));
     }
 
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
@@ -27,10 +31,16 @@ public class AttackBehaviour : StateMachineBehaviour
             AI.enemyBody.velocity = Vector2.zero;
             //Attack
             Debug.Log("Attack");
+            AI.isFighting = true;
+
+            AI.chasedPlayerPosition = AI.playerPosition.position;
+            AI.direction = AI.chasedPlayerPosition - AI.transform.position;
+            AI.enemyBody.transform.rotation = Quaternion.LookRotation(new Vector3(0.0f, 0.0f, AI.direction.x));
         }
         //if player out of attack range, go to chasing
         else if (!AI.playerInAttackRange)
         {
+            AI.isFighting = false;
             animator.SetBool("isAttacking", false);
             animator.SetBool("isChasing", true);
         }

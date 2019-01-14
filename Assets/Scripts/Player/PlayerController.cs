@@ -17,17 +17,22 @@ public class PlayerController : MonoBehaviour {
     public float dodgeSpeed = 10.0f;
     public float dodgeInterval = 5.0f;
     public float dodgeTimer;
+    public float startTimeBtwAttack;
+    public float attackRange;
+    public float maxPlayerHealth = 100;
+    public float currentPlayerHealth = 1;
 
     public int dodgeIFrames = 15;
     public int lastDodgeFrames = 3;
-    public int maxPlayerHealth = 100;
-    public int currentPlayerHealth = 1;
     //public float xd = 3;
+
+    public Animator animator;
 
     private float hAxis;
     private float dodgeAxis;
     private float attackAxis;
     private float interactAxis;
+    private float timeBtwAttack;
     private int dodgeCount = 0;
     private bool hasDodged = false;
     private Vector2 movementVect;
@@ -70,6 +75,7 @@ public class PlayerController : MonoBehaviour {
         jumpMethod();
         dodgeMethod();
         DeathCheck();
+        attackMethod();
     }
     #endregion
 
@@ -77,6 +83,7 @@ public class PlayerController : MonoBehaviour {
     private void walkMethod()
     {
         hAxis = Input.GetAxis("Horizontal");
+        animator.SetFloat("speed", Mathf.Abs(hAxis));
         if (hAxis != 0.0f)
         {
             movementVect = new Vector2(hAxis * runningSpeed, playerBody.velocity.y);
@@ -91,23 +98,31 @@ public class PlayerController : MonoBehaviour {
     #region Jump Method
     private void jumpMethod()
     {
+        float groundCheckDelay = 0.01f;
+        groundCheckDelay -= Time.deltaTime;
         if (Input.GetKeyDown(KeyCode.Space) && IsGrounded() && jumpCount == 2)
         {
+            groundCheckDelay = 0.5f;
+            groundCheck.gameObject.SetActive(false);
             jumpCount--;
             //Debug.Log("First jump!");
             playerBody.velocity = new Vector2(playerBody.velocity.x, jumpPower);
             //playerBody.AddForce(Vector2.up * jumpPower, ForceMode2D.Impulse);
+            animator.SetTrigger("jump");
         } // to switch back to force based jumping, uncomment the Addforce, and set velocity.y to 0.0f
-        else if(Input.GetKeyDown(KeyCode.Space) && !IsGrounded() && jumpCount > 0)
+        else if (Input.GetKeyDown(KeyCode.Space) && !IsGrounded() && jumpCount > 0)
         {
             jumpCount -= 2;
             //Debug.Log("Second jump!");
             playerBody.velocity = new Vector2(playerBody.velocity.x, jumpPower);
             //playerBody.AddForce(Vector2.up * jumpPower, ForceMode2D.Impulse);
+            animator.SetTrigger("jump");
         }
-        if(IsGrounded() && jumpCount != 2)
+        else if (IsGrounded() && jumpCount != 2 && groundCheckDelay < 0.0f)
         {
+            animator.SetTrigger("landing");
             jumpCount = 2;
+            groundCheck.gameObject.SetActive(true);
         }
     }
     #endregion
@@ -160,6 +175,31 @@ public class PlayerController : MonoBehaviour {
     }
     #endregion
 
+    #region Attack Method
+    private void attackMethod()
+    {
+        if (timeBtwAttack <= 0)
+        {
+            attackAxis = Input.GetAxis("Attack");
+            if (attackAxis > 0.0f)
+            {
+                timeBtwAttack = startTimeBtwAttack;
+                animator.SetTrigger("attack");
+                Collider2D[] enemiesToDamage = Physics2D.OverlapCircleAll(playerBody.position, attackRange, enemyLayers);
+                for (int i = 0; i < enemiesToDamage.Length; i++)
+                {
+                    enemiesToDamage[i].GetComponent<EnemyController>().TakeDamage(equippedWeapon.GetComponent<Attack>().weaponDMG);
+                }
+            }
+        }
+        else
+        {
+            timeBtwAttack -= Time.deltaTime;
+        }
+
+    }
+    #endregion
+
     #region OnTriggerStay
     private void OnTriggerStay2D(Collider2D other)
     {
@@ -186,6 +226,7 @@ public class PlayerController : MonoBehaviour {
         #endregion
 
         #region Attack Method
+        /*
         attackAxis = Input.GetAxis("Attack");
         if (other.CompareTag("Enemy") && attackAxis > 0.0f)
         {
@@ -193,12 +234,14 @@ public class PlayerController : MonoBehaviour {
             {
                 equippedWeapon.GetComponent<Attack>().AttackMethod(other.GetComponent<Collider2D>());
                 hasAttacked = true;
+                animator.SetBool("attack", true);
             }
         }
         else
         {
             hasAttacked = false;
         }
+        */
         #endregion
     }
     #endregion
@@ -223,4 +266,18 @@ public class PlayerController : MonoBehaviour {
     }
     #endregion
 
+
+    #region OnDrawGizmosSelected
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(playerBody.position, attackRange);
+    }
+    #endregion
+
+    public void TakeDamage(float DMG)
+    {
+        currentPlayerHealth -= DMG;
+        DeathCheck();
+    }
 }
