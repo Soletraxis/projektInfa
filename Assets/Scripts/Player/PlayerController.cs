@@ -28,10 +28,11 @@ public class PlayerController : MonoBehaviour {
 
     public Animator animator;
 
+    private float invincibilityTimer;
+    private float initialInvincibilityTimer = 0.5f;
     private float hAxis;
     private float dodgeAxis;
     private float attackAxis;
-    private float interactAxis;
     private float timeBtwAttack;
     private int dodgeCount = 0;
     private bool hasDodged = false;
@@ -66,6 +67,7 @@ public class PlayerController : MonoBehaviour {
         GameManager.instance.hudManager.heldWeaponDisplay.GetComponent<Image>().sprite = equippedWeapon.transform.GetComponentInChildren<SpriteRenderer>().sprite;
         equippedWeapon.transform.GetChild(0).gameObject.SetActive(false);
         DontDestroyOnLoad(gameObject);
+        invincibilityTimer = initialInvincibilityTimer;
     }
     #endregion
 
@@ -76,6 +78,7 @@ public class PlayerController : MonoBehaviour {
         dodgeMethod();
         DeathCheck();
         attackMethod();
+        invincibilityTimer -= Time.deltaTime;
     }
     #endregion
 
@@ -204,12 +207,11 @@ public class PlayerController : MonoBehaviour {
     private void OnTriggerStay2D(Collider2D other)
     {
         #region Picking stuff up
-        interactAxis = Input.GetAxis("Interact");
-        if (other.CompareTag("Weapon") && interactAxis == 1.0f)
+        if (other.CompareTag("Weapon") && Input.GetKeyDown(KeyCode.L))
         {
             if (hasInteracted == false)
-            {
-                equippedWeapon.transform.GetChild(0).gameObject.SetActive(true);
+            {   
+                equippedWeapon.transform.GetComponentInChildren<WeaponStats>(true).gameObject.SetActive(true);
                 equippedWeapon.GetComponentInChildren<WeaponStats>().transform.parent = null;
                 GameManager.instance.hudManager.heldWeaponDisplay.GetComponent<Image>().sprite = other.GetComponentInParent<SpriteRenderer>().sprite;
                 other.transform.root.gameObject.SetActive(false);
@@ -252,6 +254,7 @@ public class PlayerController : MonoBehaviour {
         if (currentPlayerHealth <= 0.0f)
         {
             Destroy(gameObject);
+            GameManager.instance.hudManager.GamePause(1);
         }
     }
     #endregion
@@ -277,7 +280,11 @@ public class PlayerController : MonoBehaviour {
 
     public void TakeDamage(float DMG)
     {
-        currentPlayerHealth -= DMG;
-        DeathCheck();
+        if(invincibilityTimer <= 0.0f)
+        {
+            invincibilityTimer = initialInvincibilityTimer;
+            currentPlayerHealth -= DMG;
+            DeathCheck();
+        }
     }
 }

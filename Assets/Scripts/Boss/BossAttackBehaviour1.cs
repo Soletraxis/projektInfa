@@ -14,6 +14,10 @@ public class BossAttackBehaviour1 : StateMachineBehaviour
         AI = animator.GetComponent<EnemyController>();
         AI.enemyBody.velocity = Vector2.zero;
         attackDuration = 2.0f;
+        AI.isFightingJump = true;
+        AI.chasedPlayerPosition = AI.playerPosition.position;
+        AI.direction = AI.chasedPlayerPosition - AI.enemyBody.transform.position;
+        AI.enemyBody.transform.rotation = Quaternion.LookRotation(new Vector3(0.0f, 0.0f, -AI.direction.x));
         //Jump and smash attack
     }
 
@@ -25,6 +29,7 @@ public class BossAttackBehaviour1 : StateMachineBehaviour
         {
             animator.SetBool("Move" + AI.lastAttack, false);
             animator.SetBool("isIdle", true);
+            AI.isFightingJump = false;
         }
     }
 

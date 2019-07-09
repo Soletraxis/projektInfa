@@ -38,30 +38,13 @@ GameObject:
   - component: {fileID: 61602295964937674}
   - component: {fileID: 50760764040583286}
   - component: {fileID: 114855149232549946}
-  m_Layer: 16
+  m_Layer: 13
   m_Name: DefaultWeapon
   m_TagString: Weapon
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 0
---- !u!1 &1481284967027074
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 4584764436872892}
-  - component: {fileID: 114049998047192048}
-  - component: {fileID: 61413464370601264}
-  m_Layer: 16
-  m_Name: PlayerDMGTakeController
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
 --- !u!1 &1483310741878304
 GameObject:
   m_ObjectHideFlags: 0
@@ -93,6 +76,7 @@ GameObject:
   - component: {fileID: 114371926512449514}
   - component: {fileID: 82618098163202410}
   - component: {fileID: 95797626630330578}
+  - component: {fileID: 58343395888525996}
   m_Layer: 8
   m_Name: Player
   m_TagString: Player
@@ -109,7 +93,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4082116518288692}
   - component: {fileID: 61175618785503682}
-  m_Layer: 16
+  m_Layer: 14
   m_Name: DefaultWeaponTrigger
   m_TagString: Weapon
   m_Icon: {fileID: 0}
@@ -168,14 +152,13 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1557619202543532}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.29, y: -0.31, z: 0}
+  m_LocalPosition: {x: -5.13, y: -0.48, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4971936164779736}
   - {fileID: 4831923154063554}
   - {fileID: 4750018825058962}
   - {fileID: 4899343073378354}
-  - {fileID: 4584764436872892}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -192,19 +175,6 @@ Transform:
   - {fileID: 4082116518288692}
   m_Father: {fileID: 4971936164779736}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!4 &4584764436872892
-Transform:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1481284967027074}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 4208600997770646}
-  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4750018825058962
 Transform:
@@ -299,6 +269,21 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 5
+--- !u!58 &58343395888525996
+CircleCollider2D:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1557619202543532}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: -0.25}
+  serializedVersion: 2
+  m_Radius: 0.24252011
 --- !u!61 &61175618785503682
 BoxCollider2D:
   m_ObjectHideFlags: 1
@@ -323,31 +308,6 @@ BoxCollider2D:
   m_AutoTiling: 0
   serializedVersion: 2
   m_Size: {x: 2, y: 0.5}
-  m_EdgeRadius: 0
---- !u!61 &61413464370601264
-BoxCollider2D:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1481284967027074}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0, y: 0}
-    oldSize: {x: 0, y: 0}
-    newSize: {x: 0, y: 0}
-    adaptiveTilingThreshold: 0
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
 --- !u!61 &61602295964937674
 BoxCollider2D:
@@ -386,7 +346,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.024019718, y: 0}
+  m_Offset: {x: -0.024019718, y: 0.07235609}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -397,7 +357,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.47156668, y: 1}
+  m_Size: {x: 0.47156668, y: 0.8552878}
   m_EdgeRadius: 0
 --- !u!61 &61905781632044502
 BoxCollider2D:
@@ -433,7 +393,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: a828452b20b6a45349875811c113832f, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 21adea76a7eb80640b21173c99c02bc8, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
@@ -537,18 +497,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &114049998047192048
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1481284967027074}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b1e515322ec4c0b41b6e6044228588f3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  parentCollider2D: {fileID: 61889194739670096}
 --- !u!114 &114371926512449514
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -562,11 +510,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   runningSpeed: 4
   jumpPower: 7
-  dodgeSpeed: 8
+  dodgeSpeed: 6
   dodgeInterval: 1
   dodgeTimer: 0
   startTimeBtwAttack: 0.3
-  attackRange: 0.5
+  attackRange: 0.8
   maxPlayerHealth: 100
   currentPlayerHealth: 1
   dodgeIFrames: 20
@@ -578,7 +526,7 @@ MonoBehaviour:
     m_Bits: 1024
   enemyLayers:
     serializedVersion: 2
-    m_Bits: 512
+    m_Bits: 131584
   groundCheck: {fileID: 4831923154063554}
   equippedWeapon: {fileID: 4971936164779736}
 --- !u!114 &114468785196423174
@@ -628,7 +576,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1c391f70d7d15514d811e49ac1092d16, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weaponDMG: 100
+  weaponDMG: 20
   weaponCoolDown: 5
   weaponComboTimer: 0.5
 --- !u!212 &212055959644369826

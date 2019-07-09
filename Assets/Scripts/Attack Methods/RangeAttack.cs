@@ -32,8 +32,9 @@ public class RangeAttack : MonoBehaviour {
         {
             if (AI.isFighting)
             {
+                GameObject instance = Instantiate(projectile, transform.position, Quaternion.Euler(0.0f, 0.0f, rotZ + offset));
+                instance.GetComponent<Rigidbody2D>().velocity = difference.normalized * instance.GetComponent<ArrowController>().speed;
                 AI.timeBtwAttack = AI.startTimeBtwAttack;
-                Instantiate(projectile, transform.position, Quaternion.Euler(0.0f, 0.0f, rotZ + offset));
             }
         }
         else

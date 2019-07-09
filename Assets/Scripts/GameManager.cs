@@ -57,9 +57,7 @@ public class GameManager : MonoBehaviour {
             currentLevel = 1;
         }
         SceneManager.LoadScene("Level" + currentLevel);
-        hudManager.player.gameObject.SetActive(false);
-        //ADD LOADING SCREEN, MOVE PLAYER TO DESIRED POSITION
-        hudManager.player.gameObject.SetActive(true);
+        hudManager.ResetHP();
     }
     #endregion
 

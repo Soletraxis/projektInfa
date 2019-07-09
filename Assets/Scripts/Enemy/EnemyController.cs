@@ -1,10 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class EnemyController : MonoBehaviour {
 
     #region Variables
+    private float healthSliderTimer;
+    public float healthSliderInitialTime = 1f;
     public float HP = 150.0f;
     public float initialSpeed;
     public float speed = 5f;
@@ -57,6 +60,9 @@ public class EnemyController : MonoBehaviour {
 
     [SerializeField]
     public CircleCollider2D attackRangeCollider;
+
+    [SerializeField]
+    public Slider healthSlider;
     #endregion
 
     private void Awake()
@@ -67,9 +73,32 @@ public class EnemyController : MonoBehaviour {
         attackRangeCollider.radius = attackRange;
     }
 
+    private void Start()
+    {
+        healthSlider.maxValue = HP;
+        healthSlider.value = HP;
+        healthSliderTimer = -1;
+        healthSlider.gameObject.SetActive(false);
+    }
+
+    private void Update()
+    {
+        healthSliderTimer -= Time.deltaTime;
+        if(healthSliderTimer > 0.0f)
+        {
+            healthSlider.gameObject.SetActive(true);
+        }
+        else if(healthSliderTimer < 0.0f)
+        {
+            healthSlider.gameObject.SetActive(false);
+        }
+    }
+
     public void TakeDamage(float DMG)
     {
+        healthSliderTimer = healthSliderInitialTime;
         HP -= DMG;
+        healthSlider.value = HP;
         DeathCheck();
     }
 

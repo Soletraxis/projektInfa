@@ -34,26 +34,15 @@ public class LaserAndShoot : MonoBehaviour {
     #region Attack Method
     void attackMethod()
     {
-        Vector3 difference = AI.playerPosition.position - ShootPosition.transform.position;
+        Vector3 difference = AI.playerPosition.position - transform.position;
         float rotZ = Mathf.Atan2(difference.y, difference.x) * Mathf.Rad2Deg;
-
         if (AI.timeBtwAttack <= 0)
         {
-            laser.enabled = true;
-            while (TimeOfLaser > 0)
-            {
-                Ray2D ray = new Ray2D(transform.position, AI.playerPosition.position);
-                laser.SetPosition(0, ray.origin);
-                laser.SetPosition(1, ray.GetPoint(100));
-                TimeOfLaser -= Time.deltaTime;
-            }
-
-            laser.enabled = false;
-
             if (AI.isFightingRange)
             {
+                GameObject instance = Instantiate(projectile, transform.position, Quaternion.Euler(0.0f, 0.0f, rotZ + offset));
+                instance.GetComponent<Rigidbody2D>().velocity = difference.normalized * instance.GetComponent<ArrowController>().speed;
                 AI.timeBtwAttack = AI.startTimeBtwAttack;
-                Instantiate(projectile, transform.position, Quaternion.Euler(0.0f, 0.0f, rotZ + offset));
             }
         }
         else

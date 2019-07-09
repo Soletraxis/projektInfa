@@ -30,7 +30,6 @@ public class AttackBehaviour : StateMachineBehaviour
         {
             AI.enemyBody.velocity = Vector2.zero;
             //Attack
-            Debug.Log("Attack");
             AI.isFighting = true;
 
             AI.chasedPlayerPosition = AI.playerPosition.position;

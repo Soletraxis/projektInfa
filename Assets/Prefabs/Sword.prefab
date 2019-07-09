@@ -154,7 +154,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1c391f70d7d15514d811e49ac1092d16, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weaponDMG: 100
+  weaponDMG: 30
   weaponCoolDown: 5
   weaponComboTimer: 0.5
 --- !u!212 &212054639786997016

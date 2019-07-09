@@ -9,6 +9,7 @@ public class HUDManager : MonoBehaviour {
     #region Variables
     private bool cancelActive = false;
     private bool settingsDisplayed = false;
+    private bool controlsDisplayed = false;
     private float audioLevel = 0.5f;
 
     [SerializeField]
@@ -37,6 +38,9 @@ public class HUDManager : MonoBehaviour {
 
     [SerializeField]
     public GameObject gamePauseUISettings;
+
+    [SerializeField]
+    public GameObject gamePauseUIControls;
     #endregion
 
     #region Awake
@@ -44,11 +48,12 @@ public class HUDManager : MonoBehaviour {
     {
         gamePauseUISettings.SetActive(false);
         gamePauseCanvas.SetActive(false);
+        gamePauseUIControls.SetActive(false);
         audioSlider.value = audioLevel;
     }
 #endregion
 
-    #region Update
+    #region FixedUpdate
     void FixedUpdate () { // maybe does not have to be called all the time, just when loses or gains hp
         HealthUpdate();
     }
@@ -78,6 +83,10 @@ public class HUDManager : MonoBehaviour {
             if (gamePauseUISettings.active)
             {
                 SettingsTOGGLE();
+            }
+            else if (gamePauseUIControls.active)
+            {
+                ControlsTOGGLE();
             }
             else
             {
@@ -113,12 +122,28 @@ public class HUDManager : MonoBehaviour {
     }
     #endregion
 
+    #region ControlsTOGGLE
+    public void ControlsTOGGLE()
+    {
+        gamePauseUI.SetActive(controlsDisplayed);
+        controlsDisplayed = !controlsDisplayed;
+        gamePauseUIControls.SetActive(controlsDisplayed);
+    }
+    #endregion
+
     #region SetVolume
     public void setVolume()
     {
         PlayerPrefs.SetFloat("audioLevel", audioSlider.value);
         gameAudio.volume = audioSlider.value;
     }
-#endregion
+    #endregion
+
+    #region ResetHP
+    public void ResetHP()
+    {
+        player.GetComponent<PlayerController>().currentPlayerHealth = player.GetComponent<PlayerController>().maxPlayerHealth;
+    }
+    #endregion
 }
 

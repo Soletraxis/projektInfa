@@ -28,7 +28,7 @@ public class MeleeAttack : MonoBehaviour {
                 Collider2D[] enemiesToDamage = Physics2D.OverlapCircleAll(AI.enemyBody.position, AI.attackRange, AI.playerLayer);
                 for (int i = 0; i < enemiesToDamage.Length; i++)
                 {
-                    enemiesToDamage[i].GetComponent<PlayerController>().TakeDamage(5);
+                    enemiesToDamage[i].GetComponent<PlayerController>().TakeDamage(5.0f);
                 }
             }
 

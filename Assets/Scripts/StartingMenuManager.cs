@@ -60,7 +60,7 @@ public class StartingMenuManager : MonoBehaviour {
 
     public void ExitGame()
     {
-        ExitGame();
+        Application.Quit();
     }
 
     public void setVolume()

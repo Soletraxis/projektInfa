@@ -10,27 +10,21 @@ public class ArrowController : MonoBehaviour {
     public float damage;
     public LayerMask whatIsSolid;
 
-    [SerializeField]
-    private EnemyController AI;
-
     // Use this for initialization
     void Start()
     {
-        AI = GetComponent<EnemyController>();
         Invoke("DestroyProjectile", lifeTime);
     }
 
-    // Update is called once per frame
-    void FixedUpdate () {
-        transform.Translate(Vector2.up * speed * Time.deltaTime);
-
-        RaycastHit2D hitInfo = Physics2D.Raycast(transform.position, transform.up, distance, whatIsSolid);
-        if (hitInfo != null)
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Player"))
         {
-            if (hitInfo.collider.CompareTag("Player"))
-            {
-                hitInfo.collider.GetComponent<PlayerController>().TakeDamage(damage);
-            }
+            collision.GetComponent<PlayerController>().TakeDamage(damage);
+            DestroyProjectile();
+        }
+        else if (collision.CompareTag("DestroyProjectile"))
+        {
             DestroyProjectile();
         }
     }
